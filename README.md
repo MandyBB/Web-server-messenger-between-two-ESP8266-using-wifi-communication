@@ -100,11 +100,34 @@ The functions created for this project are on the list below.
   The setup for both ESP8266 is just for beginning the serial port. The serial port is used to show the id of the WebServer and also shows the message that is coming and where the program is in the moment. 
 
 #### Loop
+  The loop, as showed at the beginning of this section is a bit different from Server and Client. The difference is where both starts. Even though that, both loops have the same three cases on the switch function that changes according to the variable var that changes during the process. So the cases are:
+- **case 1:** Setup of WebServer and waits for the message to come from it;
+- **case 2:** Setup of Wi-Fi communication and sending the message through it;
+- **case 3:** Receive the message from the Wi-Fi communication.
+
 ### Tests, problems and solutions
+  The first test of the project finished did not work. Because of that we decided to test both ESP8266 separated since the only link between the two ESP8266 is the Wi-Fi communication we decided to use the second ESP8266 with just the Wi-Fi communication code that we knew it was working.
+
 #### 1st Simulation
+  The first one to be tested was the Server ESP8266. When started the program, the Server ESP8266 did not show any problem. Like said before, it is supposed to start with the HTML page and when the user writes something on the window followed by a click on the bottom “Submit”, it turns off the WebServer and starts the Wi-Fi communication with the other ESP8266, sending a message and waiting for the answer. This part was perfect, like we can see at the images below, the Server ESP8266 follows all this steps and also, after that, it restarts the WebServer web page and it is possible to see the message sent by the other ESP8266.
+  The problem appears right after this first complete loop. When the user tries to write the answer back, the system turns off the WebServer and turns on the Wi-Fi communication but the other ESP8266 does not receive the message. More strange than that, the Server ESP8266 thinks it sent and wait for the response through the channel, which is possible. If we wrote something on the Client ESP8266 it appears at the Server ESP8266 and it continues its loop like nothing had happened.
+  Since we couldn’t find an explanation for that, we thought that the problem maybe could be easier to see on the Client ESP8266, so we decided to check the Client ESP8266 code and simulate it.
+
 #### 2nd Simulation
+  The Client ESP8266 has to start with the Wi-Fi communication and wait for the answer. By then, everything was fine. It waited for the message to come and then, when it received, it was supposed to send to the WebServer. So, the sequence of the events is: Turn off Wi-Fi communication; Turn on WebServer; Show information of the Web Server Ip address at the serial port; copy this address at the internet browser to see the HTML; Write message or see the answer at the HTML.
+  But when it was on the “Show information of the Web Server Ip address at the serial port” event, the IP address showed was 11.11.11.11 which is the IP address of the Wi-Fi communication, and if we put this IP address at the internet browser, nothing happened. With that, we concluded that maybe the problem was at the wifi disconnection part or in the setup part.
+  To make sure that the problem was not in the setup area, we decided to do another simulation, where the Client started with the WebServer setup, not the Wi-Fi communication. But making the Client start with the WebServer setup wasn’t a good idea and, even though it setted the IP address right at the beginning, it stopped working the Wi-Fi communication.
+
 #### Solution
+  After all of this simulation, we realized that the problem  is at the disconnection of the previous Wi-Fi IP address. In our code, every single time we call a new Wi-Fi setup (for the communication between both ESP and the communication with the WebServer) we use two functions: WiFi.softAPdisconnect(true) that disconnect stations from the network established by the soft-AP. It is set to true, so it will switch the soft-AP mode off; and the WiFi.disconnect(true) that disconnects the WiFi shield from the current network.
+  With that, we thought that everything was fine, but, searching on the internet, we discovered that this two arguments does not work if called before the connection, which sounded strange, so we searched more, and apparently there is no solution yep for this issue. Here are some forums talking about the matter:
+- https://github.com/espressif/arduino-esp32/issues/400
+- https://forum.arduino.cc/index.php?topic=431854.0 
+  Another possible problem is the fact that we are using two types of IP address, one Statical that is created to do the Wi-Fi communication between the two ESP8266 and the other is a non Statical used for the connection to the WLAN where has an internet access where the WebServer is based off.
+  Unfortunately, there wasn’t found any solution for this problem and the search toward an answer failed since in the internet this subject apparently is new or inexistent. So this problem may be a good subject of post-project research.
+
 ## Conclusion
-
-
-
+  One of the main objectives of this project was to work with the ESP8266 module and get to know it a little better. We decided that we wanted to focus on one of its particularities, which is the WiFi connection. For this we chose to do the WiFi communication between two ESP8266. 
+  One of the suggestions of the professor to our project was to expand it and create two web servers and that the communication was produced through these as in a messenger. After evaluating this option we decided to take it.
+  During the two lab sessions to create our project, we managed to move forward with it, but as we have already mentioned some problems were found. These two sessions were not enough and we had to work more time in the project to find a final solution. During this time we have achieved what was one of our objectives, investigate and get to learn more about ESP8266. We have also learned to develop a project from scratch, first collecting information from different tutorials and then applying it and creating a new idea.
+  Team work has been fundamental for this project, as well as the help given by the professor and the assistants. Finally after all the work we can say that we are happy with what we have learned and achieved thanks to the realization of this project.
