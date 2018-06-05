@@ -29,7 +29,7 @@ Figure 1. Block schema from the project.
   To do it, this project was divided in two main sections, the WiFi communication between the two ESP8266 and the creation of two Web servers that communicate with the ESP8266s by WiFi.
   The materials used for this project are two ESP8266, two USB cables and two computers with Arduino Software IDE installed.
   
-  ![Pin Functions](Materials.jpg)
+  ![Pin Functions](Images.md/Materials.jpg)
 
 Figure 3. Material.
 
