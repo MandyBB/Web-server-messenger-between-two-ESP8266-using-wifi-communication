@@ -65,12 +65,19 @@ https://github.com/josehp22/Webserver-with-ESP8266
   Since both parts works with the Wi-Fi system from their ESP8266 and the ESP8266 works only with one channel per time, it is important to turn on/off the Wi-Fi channel every single time it is used. To do it so, we elaborated a sequence of events that the both ESP8266 should follow.
 
 [1] - Turn on Wi-Fi communication as Server;
+
        Wait for msg;
+       
 [2] - Turn on WebServer;
+
        Wait for msgWB from WebServer;
+       
 if (msgWS arrives):
+
 	[2] - Stores the msgWS in msg;
+	
 	       Turn off WebServer;
+	       
        Turn on Wi-Fi Communication as Client;
        Send msg to [1];
 [1] - Listen msg;
