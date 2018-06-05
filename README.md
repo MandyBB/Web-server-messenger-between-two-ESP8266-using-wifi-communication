@@ -70,11 +70,32 @@ https://github.com/josehp22/Webserver-with-ESP8266
   
   ![Pin Functions](Images.md/figura8.1.png)
   ![Pin Functions](Images.md/figura8.2.png)
+Figure 8. Msg is the message to be transmitted.
 
+  Also, both ESP8266 must start in different settings, the Server must Start at the WebServer and the Client at the Wi-Fi communication. This inicial state is needed because if both are in the Wi-Fi communication setup there won’t be possible to change the message to send information toward the communication, and if both are in WebServer they will pass information to each other just when both have something to say, and that is not what we want.
+  So, with this new schematics we worked on a pseudo program code to work in the loop of each ESP8266, to change the Wi-Fi communication type, that can be seen below at the figure 9. Note that this pseudocode is just to illustrate the changes of the Wi-Fi sets, meaning that it doesn’t have the reading and sending function of both parts (WebServer and Wi-Fi communication).
+
+  ![Pin Functions](Images.md/figura9.png)
+
+  Notice that in this situation it doesn’t appear the switch off of the Wi-Fi set. It happens because it was decided to do the switch off of the Wi-Fi setup used every time we called a new one. Finally, the codes could be united and tested together.
 
 ### The code
+  For the code, as said before, it has to be done two codes, one for the client and one for the server even though most parts of the codes are the same. Also, for this part, we will separate this section between Variables, functions, setup and loop.
+
 #### Variables and Libraries
+  The variables and the libraries for the main code are the same for Server and Client. It is important to include all the libraries for Wifi connection for ESP8266 (<ESP8266WiFi.h>, <WiFiUdp.h>, <WiFiClient.h>, <ESP8266WebServer.h>) and also to build the HTML page.
+  Another important thing that must be done is to declare the variables to the WebServer configuration which are the SSID, password, the port number and a class and the variables for the Wi-Fi communication which are the IP address (local, dns, netmask and remote).
+
 #### Functions
+The functions created for this project are on the list below.
+- setupWIFI: Where is done the the setup for the Wifi communication between the two ESP8266. This configuration must be different for both client and station and at the beginning of this setup must also have two disconnection functions for possible previous Wifi connection;
+- SendingMensage: this function was created to send the message through the Wi-Fi connection between both ESP8266;
+- ReceivingMensage: it was designed for receiving and converting the message from the Wi-Fi communication between both ESP8266;
+- handleRoot: responsible for the creation of the HTML page;
+- handleLMsg: it is used when the user at the WebServer asks to see the answer if it has;
+- handleInComeMSG: this is for handling the message that the user wrote at the WebServer for sending;
+- setupWebServer: the initial configuration for the WebServer. It must also content the disconnection functions for a possible previous Wifi connection.
+
 #### Setup
 #### Loop
 ### Tests, problems and solutions
