@@ -64,30 +64,12 @@ https://github.com/josehp22/Webserver-with-ESP8266
   The main project, like said at the introduction, is a messenger between 2 ESP8266 based on a wifi communication and a web server software. So, once we have the two parts done, we have to join them together.
   Since both parts works with the Wi-Fi system from their ESP8266 and the ESP8266 works only with one channel per time, it is important to turn on/off the Wi-Fi channel every single time it is used. To do it so, we elaborated a sequence of events that the both ESP8266 should follow.
 
-[1] - Turn on Wi-Fi communication as Server
-      Wait for msg
-[2] - Turn on WebServer
-      Wait for msgWB from WebServer
-       
-if (msgWS arrives):
-	[2] - Stores the msgWS in msg
-		       Turn off WebServer
-    	   Turn on Wi-Fi Communication as Client
-    	   Send msg to [1]
-	[1] - Listen msg
- 	      Send ConfMsg for confirmation of received msg to [2]
-	[2] - Receives ConfMsg;
- 	      Stop sending msg;
- 	      Turn off Wi-Fi Communication as Client;
-	[1] - Turn off Wi-Fi communication as server;
- 	      Turn on WebServer;
-  	     Send msg to WebServer;
-	[2] - Turn on Wi-Fi Communication as Server;
-  	     Wait for msg;
-	[2] = [1] and [1]=[2];
-	return;
+![Pin Functions](Images.md/figura7.png)
 
   So, as it is possible to see at the figure 7, there has 2 ESP8266 with different codes, but both must have all the functions as initializations for clients and server, which was showed to have a lot of problem in the union of the codes. So, it was created another resolution for the unique Wi-Fi channel which is shown at figure 8. In this resolution, the Server ESP8266 is always the Wi-Fi communication server and the Client ESP8266 will always be the Wi-Fi communication client.
+  
+  ![Pin Functions](Images.md/figura8.1.png)
+  ![Pin Functions](Images.md/figura8.2.png)
 
 
 ### The code
