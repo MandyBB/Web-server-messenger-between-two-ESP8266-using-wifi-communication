@@ -19,6 +19,8 @@ This is a project to do a messaging web page where it is possible the communicat
 - [Conclusion](#Conclusion)
 
 ## Introduction
+This is a project to do a messaging web page where it is possible the communication between two Web pages through two WiFi communications using two ESP8266.The objective of this project is to learn how works the WiFi protocol at an ESP8266 and work at different types of WiFi communication.
+
 ## Tutorials
 ### WiFi communication between two ESP8266
 ### Web Server with ESP8266
@@ -36,11 +38,3 @@ This is a project to do a messaging web page where it is possible the communicat
 
 ![Pin Functions](Materials.jpg)
 
-
-## ESP32Dev Board PINMAP
-
-![Pin Functions](docs/esp32_pinmap.png)
-
-## Hint
-
-Sometimes to program ESP32 via serial you must keep GPIO0 LOW during the programming process
