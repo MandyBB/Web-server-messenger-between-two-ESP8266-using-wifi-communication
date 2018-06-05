@@ -122,7 +122,8 @@ The functions created for this project are on the list below.
   After all of this simulation, we realized that the problem  is at the disconnection of the previous Wi-Fi IP address. In our code, every single time we call a new Wi-Fi setup (for the communication between both ESP and the communication with the WebServer) we use two functions: WiFi.softAPdisconnect(true) that disconnect stations from the network established by the soft-AP. It is set to true, so it will switch the soft-AP mode off; and the WiFi.disconnect(true) that disconnects the WiFi shield from the current network.
   With that, we thought that everything was fine, but, searching on the internet, we discovered that this two arguments does not work if called before the connection, which sounded strange, so we searched more, and apparently there is no solution yep for this issue. Here are some forums talking about the matter:
 - https://github.com/espressif/arduino-esp32/issues/400
-- https://forum.arduino.cc/index.php?topic=431854.0 
+- https://forum.arduino.cc/index.php?topic=431854.0
+
   Another possible problem is the fact that we are using two types of IP address, one Statical that is created to do the Wi-Fi communication between the two ESP8266 and the other is a non Statical used for the connection to the WLAN where has an internet access where the WebServer is based off.
   Unfortunately, there wasn’t found any solution for this problem and the search toward an answer failed since in the internet this subject apparently is new or inexistent. So this problem may be a good subject of post-project research.
 
