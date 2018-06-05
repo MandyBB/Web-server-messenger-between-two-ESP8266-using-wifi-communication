@@ -88,7 +88,7 @@ Figure 8. Msg is the message to be transmitted.
 
 #### Functions
 The functions created for this project are on the list below.
-- setupWIFI: Where is done the the setup for the Wifi communication between the two ESP8266. This configuration must be different for both client and station and at the beginning of this setup must also have two disconnection functions for possible previous Wifi connection;
+- ### setupWIFI ###: Where is done the the setup for the Wifi communication between the two ESP8266. This configuration must be different for both client and station and at the beginning of this setup must also have two disconnection functions for possible previous Wifi connection;
 - SendingMensage: this function was created to send the message through the Wi-Fi connection between both ESP8266;
 - ReceivingMensage: it was designed for receiving and converting the message from the Wi-Fi communication between both ESP8266;
 - handleRoot: responsible for the creation of the HTML page;
