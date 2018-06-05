@@ -20,8 +20,8 @@ This is a project to do a messaging web page where it is possible the communicat
 
 ## Introduction
 ## Tutorials
-## WiFi communication between two ESP8266
-## Web Server with ESP8266
+### WiFi communication between two ESP8266
+### Web Server with ESP8266
 ## Main Project
 ## The code
 ## Variables and Libraries
